@@ -1,0 +1,9 @@
+picture.ppm
+pics/*
+.vscode/*
+gui/*
+notes/*
+reference/*
+test
+log.txt
+test.ppm
