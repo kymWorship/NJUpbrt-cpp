@@ -9,6 +9,7 @@
 #include "mylib/settings.h"
 #include "mylib/mycode.h"
 #include "mylib/common.h"
+#include "mylib/mylogo.h"
 #include "scene.h"
 #include "background.h"
 #include "accelerator/bvh.h"
@@ -89,6 +90,7 @@ int main() {
 	omp_set_num_threads(MY_THREAD_NUM);
     
     // initiate
+    outputMYLOGO();
     init_log("log.txt");    // redirect clog to "filename" & log time
     vec3 look_a(0, 0, 0);
     vec3 look_f(6, 2, 8);
@@ -103,16 +105,28 @@ int main() {
         if (hptr->mat()->is_sampling()) sourcelist.push_back(hptr);
     }
     auto naivesource = make_shared<hitable_list>(sourcelist);
-    cout<<"BVH Tree built\n";
+    auto time1 = clock();
+    cout<<"BVH Tree built in "<<(time1 - time0) / CLOCKS_PER_SEC<<"secs\n";
     // prepare the output file
     ofstream outfile;
     outfile.open("picture.ppm", ios::out | ios::trunc );
     outfile<<"P3\n"<<NX<<" "<<NY<<"\n255\n";
 
-    auto time1 = clock();
     
     // scan the scene
+    cout<<"start renderring\n";
+    int progress_step = NY / 20;
     for(int j = 0; j < NY; j++) {
+        // show progress indicator
+        if ( j%progress_step == 0 ) {
+            cout<<"\rRenderring progress: "<<(int)j*100/NY
+                <<"%[";
+            for (int indicator = 0; indicator < 20; indicator ++) {
+                if (indicator<(int)j*20/NY) cout<<"=";
+                else cout<<' ';
+            }
+            cout<<']';
+        }
         for (int i = 0; i < NX; i++) {
             vec3 col(0, 0, 0);
             vec3 mp_col[NS];
@@ -132,10 +146,10 @@ int main() {
                    << int( 255*sqrt(col.g()) ) << " "
                    << int( 255*sqrt(col.b()) ) << "\n";
         }
-        cout<<j<<endl;
     }
     auto time2 = clock();
-    cout<<"BVH using "<< (time1 - time0) / CLOCKS_PER_SEC<<"secs, rendering using "
+    cout<<"\rRenderring progress: 100%[====================]"<<endl;
+    cout<<"Rendering using "
         << (time2-time1) / CLOCKS_PER_SEC<< "secs\n";
     // close the file
     outfile.close();

@@ -326,37 +326,41 @@ vector<shared_ptr<hitable>> scene02_1() {
 
 vector<shared_ptr<hitable>> scene02indoor() {
     vector<shared_ptr<hitable>> list;
-    for (int a = -2; a <= 2; a++) {
-        for (int b = -2; b <= 2; b++) {
+    for (int a = -4; a <= 4; a++) {
+        for (int b = -4; b <= 4; b++) {
             float choose_mat = random_double();
-            vec3 center(3*a+2.7*random_double(),0.5,3*b+2.7*random_double());
-            if ((center-vec3(4,0.5,0)).length() > 0.9) {
-                if (choose_mat < 0.7) {  // diffuse
+            float radius = 0.5*(0.6 + 0.5*random_double());
+            vec3 center(2*a+1.6*random_double(),radius,2*b+1.6*random_double());
+            if ((center-vec3(4,radius,0)).length() > 0.9) {
+                if (a == 2 && b == 2) { // 02
+                    myobjloader("02-3", vec3(4.5, 0, 5.5), 2, list);
+                }
+                else if (choose_mat < 0.55) {  // diffuse
                     list.push_back( make_shared<sphere>(
-                        center, 0.5,
-                        make_shared<lambertian>(vec3(random_double()*random_double(),
-                                            random_double()*random_double(),
-                                            random_double()*random_double()))
+                        center, radius,
+                        make_shared<lambertian>(vec3(0.8*random_double(),
+                                            0.6*random_double(),
+                                            0.7*random_double()))
                     ));
                 }
-                else if (choose_mat < 0.8) { // metal
+                else if (choose_mat < 0.65) { // metal
                     list.push_back( make_shared<sphere>(
-                        center, 0.5,
+                        center, radius,
                         make_shared<metal>(vec3(0.5*(1 + random_double()),
                                        0.5*(1 + random_double()),
                                        0.5*(1 + random_double())),
                                   0)
                     ));
                 }
-                else if (choose_mat < 0.90) {  // glass
-                    list.push_back( make_shared<sphere>(center, 0.5, make_shared<glass>(vec3(1.4, 1.45, 1.5), 0)));
+                else if (choose_mat < 0.80) {  // glass
+                    list.push_back( make_shared<sphere>(center, radius, make_shared<glass>(vec3(1.4, 1.45, 1.5), 0)));
                 }
                 else {  // source
                     list.push_back( make_shared<sphere>(
-                        center, 0.5, 
-                        make_shared<source>(vec3(0.5*(1 + random_double()),
-                                       0.5*(1 + random_double()),
-                                       0.5*(1 + random_double()))
+                        center, radius, 
+                        make_shared<source>(vec3(0.25*(3*0.9 + random_double()),
+                                       0.25*(3*0.5 + random_double()),
+                                       0.25*(3*0.8 + random_double()))
                                 )
                     ));
                 }
@@ -369,12 +373,12 @@ vector<shared_ptr<hitable>> scene02indoor() {
     int minx = -10, maxx = 10, miny = 0, maxy = 10, minz = -10, maxz = 10;
     vec3 v1(maxx, miny, maxz), v2(maxx, miny, minz), v3(maxx, maxy, maxz), v4(maxx, maxy, minz),
          v5(minx, miny, maxz), v6(minx, miny, minz), v7(minx, maxy, maxz), v8(minx, maxy, minz);
-    auto mat1 = make_shared<lambertian>(vec3(0.5*(1 + random_double()),0.5*(1 + random_double()),0.5*(1 + random_double())));
-    auto mat2 = make_shared<lambertian>(vec3(0.5*(1 + random_double()),0.5*(1 + random_double()),0.5*(1 + random_double())));
-    auto mat3 = make_shared<lambertian>(vec3(0.5*(1 + random_double()),0.5*(1 + random_double()),0.5*(1 + random_double())));
-    auto mat4 = make_shared<lambertian>(vec3(0.5*(1 + random_double()),0.5*(1 + random_double()),0.5*(1 + random_double())));
-    auto mat5 = make_shared<lambertian>(vec3(0.5*(1 + random_double()),0.5*(1 + random_double()),0.5*(1 + random_double())));
-    auto mat6 = make_shared<lambertian>(vec3(0.5*(1 + random_double()),0.5*(1 + random_double()),0.5*(1 + random_double())));
+    auto mat1 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat2 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat3 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat4 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat5 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat6 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
     list.push_back(make_shared<triangle>(v1, v3, v4, mat1));
     list.push_back(make_shared<triangle>(v1, v4, v2, mat1));
     list.push_back(make_shared<triangle>(v6, v8, v7, mat2));
@@ -390,7 +394,6 @@ vector<shared_ptr<hitable>> scene02indoor() {
     // upperlight
     list.push_back(make_shared<sphere>(vec3(-4, 5, 6), 1.5, make_shared<source>(vec3(0.9, 0.3, 0.75))));
     list.push_back(make_shared<sphere>(vec3(-7, 5, -3), 1, make_shared<source>(vec3(0.74, 0.4, 0.9))));
-    myobjloader("02-3", vec3(4, 0, 5), 2, list);
     return list;
 }
 

@@ -20,7 +20,7 @@ inline double random_double() {
 #pragma once
 #define _USE_MATH_DEFINES
 #include <cmath>
-#define MAXFLOAT FLT_MAX
+#include "common.h"
 
 #include <random>
 static double random_double()

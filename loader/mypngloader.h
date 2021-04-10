@@ -23,8 +23,8 @@ unsigned char* mymodelpngloader(string filename,
     const char* filechar = filepath.c_str();
     int comp_per_pixel;
     auto image = stbi_load(filechar, &width, &height, &comp_per_pixel, 0);
-    // TODO: commend this
-    cout<<filepath<<':'<<comp_per_pixel<<endl;
+    // DEBUG: commend this
+    // cout<<filepath<<':'<<comp_per_pixel<<endl;
     assert(comp_per_pixel == BYTES_PER_PIXEL && "not RGB png");
     assert(image && "fail to load png\n");
     return image;
