@@ -3,7 +3,7 @@
 
 #include "../bvh.h"
 
-int BVHsahtraverse_split(vector<precomputeINFO>& infos, 
+__host__ int BVHsahtraverse_split(vector<precomputeINFO>& infos, 
     int start, int end, int dim
 ) { // return splidID: start -> make leaf
     int num = end - start;
@@ -36,7 +36,7 @@ int BVHsahtraverse_split(vector<precomputeINFO>& infos,
     return start + bestsplit;
 }
 
-void BVHAccel::precompute(vector<precomputeINFO>& infos) {
+__host__ void BVHAccel::precompute(vector<precomputeINFO>& infos) {
     for(int i = 0; i < h_list.size(); i++) {
         // calculate infos[i]
         infos[i].b = h_list[i]->bbox();
@@ -45,7 +45,7 @@ void BVHAccel::precompute(vector<precomputeINFO>& infos) {
     }
 }
 
-shared_ptr<BVHBuildNode> BVHAccel::recurbuild(
+__host__ shared_ptr<BVHBuildNode> BVHAccel::recurbuild(
     int start, int end, vector<precomputeINFO> infos,
     int& nodenum, vector<shared_ptr<hitable>>& orderedobj
 ) const {
@@ -135,7 +135,7 @@ shared_ptr<BVHBuildNode> BVHAccel::recurbuild(
     return newbuildnode;
 }
 
-int BVHAccel::realign(
+__host__ int BVHAccel::realign(
     shared_ptr<BVHBuildNode> root
 ) {//  realign nodes
     // init a stack
@@ -167,7 +167,7 @@ int BVHAccel::realign(
     return index;
 }
 
-bool BVHAccel::hit(
+__device__ bool BVHAccel::hit(
     const ray& r, float t_min, float t_max, hit_rec& rec
 ) const {//  dfs nodes
     // init a stack

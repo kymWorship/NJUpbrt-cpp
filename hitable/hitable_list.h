@@ -1,7 +1,7 @@
 #ifndef HITABLELISTH
 #define HITABLELISTH
 
-#include "../hitable.h"
+#include "../hitable.cuh"
 #include "../material.h"
 
 using namespace std;

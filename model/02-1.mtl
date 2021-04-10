@@ -21,7 +21,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd zero-two-fully-rigged\\source\\02noncel_T_rigged.fbm\\face.png
+map_Kd zero-two-fully-rigged/source/02noncel_T_rigged.fbm/face.png
 
 newmtl 03_-_Default.002
 Ns 18.000005
@@ -32,7 +32,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd zero-two-fully-rigged\\source\\02noncel_T_rigged.fbm\\eye.png
+map_Kd zero-two-fully-rigged/source/02noncel_T_rigged.fbm/eye.png
 
 newmtl 04_-_Default.002
 Ns 18.000005
@@ -43,7 +43,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd zero-two-fully-rigged\\source\\02noncel_T_rigged.fbm\\hair.png
+map_Kd zero-two-fully-rigged/source/02noncel_T_rigged.fbm/hair.png
 
 newmtl 05_-_Default.002
 Ns 18.000005
@@ -54,7 +54,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd zero-two-fully-rigged\\source\\02noncel_T_rigged.fbm\\body_main.png
+map_Kd zero-two-fully-rigged/source/02noncel_T_rigged.fbm/body_main.png
 
 newmtl 06_-_Default.002
 Ns 18.000005
@@ -65,4 +65,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 1
-map_Kd zero-two-fully-rigged\\source\\02noncel_T_rigged.fbm\\garment.png
+map_Kd zero-two-fully-rigged/source/02noncel_T_rigged.fbm/garment.png

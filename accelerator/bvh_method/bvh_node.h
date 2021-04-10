@@ -8,7 +8,7 @@ struct BVHBuildNode {
     shared_ptr<BVHBuildNode> child[2];
     int axis;   // 0,1,2(x,y,z) 3: leaf
     int startid, objnum, nodeid;
-    void initleaf(int start, int num,
+    __host__ void initleaf(int start, int num,
         bound leafb, int nodenum
     ) {
         b = leafb;
@@ -18,7 +18,7 @@ struct BVHBuildNode {
         axis = 3;
         nodeid = nodenum;
     }
-    void initinterior ( shared_ptr<BVHBuildNode> Lchild,
+    __host__ void initinterior ( shared_ptr<BVHBuildNode> Lchild,
         shared_ptr<BVHBuildNode> Rchild, int dim,
         int start, int num, int nodenum
     ) {

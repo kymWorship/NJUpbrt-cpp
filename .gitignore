@@ -7,3 +7,4 @@ reference/*
 test
 log.txt
 test.ppm
+*.exe

@@ -5,7 +5,7 @@
 #define MAX_DEP 40
 #define NX 800
 #define NY 400
-#define NS 10000
+#define NS 50
 #define HFOV 104 //deg
 
 // dispersion
@@ -16,7 +16,7 @@
 #define dark_fac 1
 
 // sampler
-#define USING_MONTE_CARLO true
+#define USING_MONTE_CARLO false
 
 // accelerator
 #define BVH_direct_split_num 4

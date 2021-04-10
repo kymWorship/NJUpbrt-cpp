@@ -1,7 +1,7 @@
 #ifndef AABBH
 #define AABBH
 
-#include "../hitable.h"
+#include "../hitable.cuh"
 
 /*
     not used currently

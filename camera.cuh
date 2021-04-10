@@ -1,19 +1,20 @@
-#ifndef CAMERAH
-#define CAMERAH
+#ifndef CAMERACUH
+#define CAMERACUH
 
-#include "vec3.h"
-#include "ray.h"
+#include "vec3.cuh"
+#include "ray.cuh"
 
+namespace usecuda{
 class camera {
     public:
-        camera() {};
+        __device__ camera() {};
         /* 
         look_from: point of camera; 
         look_at: center of view; 
         hfov: in degree; 
         ratio: nx/ny
         */
-        camera(vec3 look_from, vec3 look_at, vec3 vup, float hfov, float ratio) {
+        __device__ camera(usecuda::vec3 look_from, usecuda::vec3 look_at, usecuda::vec3 vup, float hfov, float ratio) {
             cam_origin = look_from;
             vec3 center_ray = unit_vector( look_at - look_from );
             float w = 2*tan(M_PI*hfov/360);
@@ -23,8 +24,8 @@ class camera {
             up_left_corner = cam_origin + center_ray - 0.5*horizen - 0.5*vertical; 
         }
 
-        ray get_ray(float rh, float rv) {
-            return ray(cam_origin, up_left_corner + rh*horizen + rv*vertical - cam_origin );
+        __device__ ray get_ray(float rh, float rv) {
+            return usecuda::ray(cam_origin, up_left_corner + rh*horizen + rv*vertical - cam_origin );
         }
 
 
@@ -36,10 +37,11 @@ class camera {
          |                   |
          v vertical----------
         */
-        vec3 cam_origin;
-        vec3 up_left_corner;
-        vec3 horizen;
-        vec3 vertical;
+        usecuda::vec3 cam_origin;
+        usecuda::vec3 up_left_corner;
+        usecuda::vec3 horizen;
+        usecuda::vec3 vertical;
 };
+}
 
 #endif
