@@ -59,14 +59,15 @@ bool cylinder::hit(
         if ( determination < 0 ) return false; // no intersection
         double t_side_p = (-b+sqrt(determination)) / (2*a);
         double t_side_n = (-b-sqrt(determination)) / (2*a);
+        assert(direct_parall&&"pendicular");
         double t_bot = - delta_o_parall / direct_parall;
         double t_top = t_bot + cy_direct.length() / direct_parall;
         vec3 o_bot = cy_origin;
         vec3 o_top = cy_origin+cy_direct;
         double t_slot_min = fmin(t_top, t_bot);
         double t_slot_max = fmax(t_top, t_bot);
-        if ( t_side_p<t_slot_max 
-          && t_side_p>t_slot_min ) { // t_side_p is possible
+        if ( t_side_p<=t_slot_max 
+          && t_side_p>=t_slot_min ) { // t_side_p is possible
             t_pos.push_back(t_side_p);
             n_pos.push_back(unit_vector( cross(
                     cy_direct,
@@ -74,8 +75,8 @@ bool cylinder::hit(
                 ) 
             ));
         }
-        if ( t_side_n<t_slot_max 
-          && t_side_n>t_slot_min ) { // t_side_n is possible
+        if ( t_side_n<=t_slot_max 
+          && t_side_n>=t_slot_min ) { // t_side_n is possible
             t_pos.push_back(t_side_n);
             n_pos.push_back(unit_vector( cross(
                     cy_direct,
@@ -88,7 +89,7 @@ bool cylinder::hit(
             t_pos.push_back(t_bot);
             n_pos.push_back(-cy_unit_direct);
         }
-        if ( (r.point_at_parameter(t_top)-o_bot).squared_length() <= cy_radsq ) {
+        if ( (r.point_at_parameter(t_top)-o_top).squared_length() <= cy_radsq ) {
             // t_top is possible
             t_pos.push_back(t_top);
             n_pos.push_back(cy_unit_direct);
@@ -100,12 +101,12 @@ bool cylinder::hit(
     bool find_valid=false;
     for (int i = 0; i < t_pos.size(); i++) {
         if ( t_pos[i]<t_max && t_pos[i]>t_min ) {   //valid
-            find_valid = true;
             if ( !find_valid || (find_valid && t_pos[i]<t_temp) ) {
                 // replace
                 t_temp = t_pos[i];
                 n_temp = n_pos[i];
             }
+            find_valid = true;
         }
     }
     if ( find_valid ) {
@@ -120,10 +121,10 @@ bool cylinder::hit(
 
 bound cylinder::bbox() const {
     return bound(fmin(cy_origin.x(), cy_origin.x()+cy_direct.x()) - cy_rad,
-                 fmin(cy_origin.y(), cy_origin.x()+cy_direct.x()) - cy_rad,
+                 fmin(cy_origin.y(), cy_origin.y()+cy_direct.y()) - cy_rad,
                  fmin(cy_origin.z(), cy_origin.z()+cy_direct.z()) - cy_rad,
                  fmax(cy_origin.x(), cy_origin.x()+cy_direct.x()) + cy_rad,
-                 fmax(cy_origin.y(), cy_origin.x()+cy_direct.x()) + cy_rad,
+                 fmax(cy_origin.y(), cy_origin.y()+cy_direct.y()) + cy_rad,
                  fmax(cy_origin.z(), cy_origin.z()+cy_direct.z()) + cy_rad
     );
 }

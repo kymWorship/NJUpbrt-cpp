@@ -470,5 +470,16 @@ vector<shared_ptr<hitable>> scene02indoor_2() {
     return list;
 }
 
+vector<shared_ptr<hitable>> test_cylinder() {
+    vector<shared_ptr<hitable>> list;
+    list.clear();
+    list.push_back( make_shared<sphere>(vec3(0,-1000,0), 1000, make_shared<lambertian>(vec3(0.5, 0.5, 0.5))) );
+    list.push_back( make_shared<sphere>(vec3(0, 1, 0), 1.0, make_shared<glass>(vec3(1.4, 1.45, 1.5), 0)));
+    list.push_back( make_shared<sphere>(vec3(-4, 1, 0), 1.0, make_shared<lambertian>(vec3(0.4, 0.2, 0.1))));
+    list.push_back( make_shared<sphere>(vec3(4, 1, 0), 1.0, make_shared<metal>(vec3(0.7, 0.6, 0.5), 0.0)));
+    list.push_back( make_shared<cylinder>(vec3(-2, 2, -5), vec3(2, 3, 5), 1.5, make_shared<lambertian>(vec3(0.3, 0.5, 0.9))) );
+    return list;
+}
+
 
 #endif
