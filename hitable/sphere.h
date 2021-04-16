@@ -1,3 +1,4 @@
+// TODO: should add ifndef?
 #include "../hitable.h"
 #include "../mylib/onb.h"
 #include "../mylib/myrand.h"
@@ -35,7 +36,7 @@ bool sphere::hit(const ray& r, float t_min, float t_max, hit_rec& rec) const {
             return true;
         }
         t_temp = ( - b + sqrt(determination) ) / (2*a);
-        if ( t_max<t_temp && t_max>t_temp ) { // come out light
+        if ( t_min<t_temp && t_max>t_temp ) { // come out light
             rec.hit_t = t_temp;
             rec.hit_p = r.point_at_parameter(t_temp);
             rec.normal = (rec.hit_p - center)/radius;// outward normal
