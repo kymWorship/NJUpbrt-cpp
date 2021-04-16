@@ -96,7 +96,7 @@ int main() {
     vec3 look_f(6, 2, 8);
     camera cam(look_f, look_a, vec3(0,1,0), HFOV, float(NX)/float(NY));
     // build BVH tree
-    auto scenelist = scene02indoor();
+    auto scenelist = scene02indoor_2();
     auto time0 = clock();
     auto scene = make_shared<BVHAccel>(scenelist);
     // naive source
