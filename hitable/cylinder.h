@@ -60,8 +60,19 @@ bool cylinder::hit(
         double t_side_p = (-b+sqrt(determination)) / (2*a);
         double t_side_n = (-b-sqrt(determination)) / (2*a);
         assert(direct_parall&&"pendicular");
-        double t_bot = - delta_o_parall / direct_parall;
-        double t_top = t_bot + cy_direct.length() / direct_parall;
+        double r_bot_parall = - delta_o_parall;
+        double r_top_parall = r_bot_parall + cy_direct.length();
+        double t_bot, t_top;
+        if ( direct_parall == 0 ) {
+            // pendicular
+            t_bot = r_bot_parall>0 ? MAXFLOAT : MINFLOAT;
+            t_top = r_top_parall>0 ? MAXFLOAT : MINFLOAT;
+        }
+        else {
+            // normal case
+            t_bot = - delta_o_parall / direct_parall;
+            t_top = t_bot + cy_direct.length() / direct_parall;
+        }
         vec3 o_bot = cy_origin;
         vec3 o_top = cy_origin+cy_direct;
         double t_slot_min = fmin(t_top, t_bot);

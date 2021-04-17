@@ -5,7 +5,7 @@
 #define MAX_DEP 40
 #define NX 800
 #define NY 400
-#define NS 20
+#define NS 20000
 #define HFOV 104 //deg
 
 // dispersion
