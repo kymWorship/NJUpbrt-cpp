@@ -107,6 +107,7 @@ int main() {
     auto naivesource = make_shared<hitable_list>(sourcelist);
     auto time1 = clock();
     cout<<"BVH Tree built in "<<(time1 - time0) / CLOCKS_PER_SEC<<"secs\n";
+    clog<<"BVH Tree built in "<<(time1 - time0) / CLOCKS_PER_SEC<<"secs\n";
     // prepare the output file
     ofstream outfile;
     outfile.open("picture.ppm", ios::out | ios::trunc );
@@ -150,6 +151,8 @@ int main() {
     auto time2 = clock();
     cout<<"\rRenderring progress: 100%[====================]"<<endl;
     cout<<"Rendering using "
+        << (time2-time1) / CLOCKS_PER_SEC<< "secs\n";
+    clog<<"Rendering using "
         << (time2-time1) / CLOCKS_PER_SEC<< "secs\n";
     // close the file
     outfile.close();
