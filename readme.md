@@ -1,22 +1,18 @@
-# NJU-PBRT HW1
-
-> 曾许曌秋 181240004
->
-> 18匡院数理
+# KYM-PBRT-cpp
 
 [TOC]
-## 其他语言(testing)
-[English](README.en.md)
+## 其他语言
+[中文](README.md) [English](README.en.md)
 
 ## 说明
 
-代码已上传[github](https://github.com/kymWorship/NJUpbrt-cpp/tree/master) master branch（目前使用地是openmp，另一个分支有同学在写该项目的cuda支持）。
+代码已上传[github](https://github.com/kymWorship/NJUpbrt-cpp/tree/master) master branch（master branch 为图像渲染部分，只是用了openmp）。
 
-本来这两周计划测试不同bvh算法、实现photonmapping和GUI的，但是最近要去实验室，所以没空写也就算了。
+>  本来这两周计划测试不同bvh算法、实现photonmapping和GUI的，但是最近要去实验室，所以没空写也就算了。
 
 ## 渲染效果样例
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src="D:\NJU\cs\PhysicsBasedRaytracing\homework1\pics\02cylinder_20000spp.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图1 样例</div> </center>
+<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图1 样例</div> </center>
 
 ## 系统构架
 
@@ -107,37 +103,10 @@ GUI使用Qt5，但是还没来及写好，下图是作为替代随便写的Cli�
 
 几何体实现都不复杂因为懒只实现了cube、sphere、plane、cylinder，其实使用牛顿下山等方法，任意曲面都很好实现。
 
-因为作业指定了平面、球体和带底面的圆柱体，而前两个太过简单，所以简单说一下圆柱的实现
 
 - cylinder
 
-  实现思路感觉有两种，一种是固定在onb坐标然后换系，但是圆柱这么简单感觉没必要直接实现就行。
-
-  光线记为$\vec{R} = \vec{O} + t\vec{D}$，圆柱使用底面圆心$\vec{o}$，轴线$\vec{d}$(轴线方向单位矢量$\vec{ud}$)，以及$r$（即顶面圆心为$\vec{o}+\vec{d}$）描述
-
-  那么对侧面圆柱列方程：
-  $$
-  |\vec{O}+t\vec{D} -\vec{o}|^2 = (\vec{ud}\cdot (\vec{O}+t\vec{D} -\vec{o}))^2 +r^2
-  \tag{1}
-  $$
-  展开得到二次方程的三个系数分别为
-  $$
-  a = |D|^2 - (\vec{ud}\cdot\vec{D})^2\\
-  b = 2( \vec{D}\cdot(\vec{O} - \vec{o}) - (\vec{ud}\cdot\vec{D})(\vec{ud}\cdot(\vec{O} - \vec{o})))\\
-  c = |\vec{O}-\vec{o}|^2 - (\vec{ud}\cdot(\vec{O} - \vec{o}))^2 - r^2
-  \tag{2}
-  $$
-  之后的处理基本与sphere相同，只需要讨论与上下地面的关系即可，这则与cube的实现类似，不过多赘述
-
-  值得讨论的特殊情景包括：
-
-  1. $a==0$：光线平行与轴线
-
-  2. $determination<0$：与侧面无交
-
-  3. $\vec{D}\cdot\vec{ud}==0$：垂直轴线，相当于cube中的与底面顶面平行的case
-
-     > ==Mark==：虽然课上说这种发生的概率趋于零，但由于double也有一定精度，测试样例2000spp未遇到这种case，但20000时立马遇到了， cube里也是这样
+  目前的实现在代码层面上有些暴力，可优化
 
 - cube
 
