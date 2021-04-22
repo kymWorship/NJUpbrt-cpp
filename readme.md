@@ -209,7 +209,7 @@ inline double random_double() {
 
 
 
-<p align="center">    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\drand48.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;       color: #999;    padding: 2px;">图8.2 随机数生成器2</div> </p>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\drand48.png">    <br>    <p align="center">图8.2 随机数生成器2</p> 
 
 ```c++
 static double random_double()
