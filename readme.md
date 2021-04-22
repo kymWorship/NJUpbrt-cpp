@@ -1,14 +1,37 @@
 # KYM-PBRT-cpp
 
-<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">图1 样例</p> 
-
 代码已上传[github](https://github.com/kymWorship/NJUpbrt-cpp/tree/master) master branch（master branch 为图像渲染部分，只是用了openmp）。
 
 其他语言的readme：[中文](README.md)， [English](README.en.md)
 
 >  本来这两周计划测试不同bvh算法、实现photonmapping和GUI的，但是最近要去实验室，所以没空写也就算了。
 
-[TOC]
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">图1 样例</p> 
+
+- [KYM-PBRT-cpp](#kym-pbrt-cpp)
+	- [系统构架](#系统构架)
+	- [交互界面](#交互界面)
+	- [Hitable](#hitable)
+			- [几何体](#几何体)
+			- [逻辑物体](#逻辑物体)
+			- [三角面片](#三角面片)
+	- [Material](#material)
+			- [玻璃](#玻璃)
+				- [色散（dispersion）](#色散dispersion)
+				- [全反射](#全反射)
+			- [金属和余弦体](#金属和余弦体)
+			- [光源](#光源)
+	- [Texture](#texture)
+	- [Camera](#camera)
+	- [Sampler](#sampler)
+			- [随机数生成](#随机数生成)
+			- [Cos-sampler](#cos-sampler)
+			- [hit-sampler](#hit-sampler)
+			- [mix-sampler](#mix-sampler)
+	- [Shader](#shader)
+	- [Loader](#loader)
+	- [Accelerator](#accelerator)
+			- [bvh](#bvh)
 
 
 ## 系统构架
