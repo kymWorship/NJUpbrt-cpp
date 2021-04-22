@@ -245,7 +245,7 @@ static double random_double()
 
 图9是没有加载贴图的效果
 
-<div style="text-align: center">    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\notext_02_indoor_10000spp.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图9 no texture 02 indoor</div> </div>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\notext_02_indoor_10000spp.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;text-align: center;">图9 no texture 02 indoor</div> 
 
 ## Accelerator
 
