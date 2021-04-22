@@ -12,7 +12,7 @@
 
 ## 渲染效果样例
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图1 样例</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">图1 样例</p> 
 
 ## 系统构架
 
@@ -95,7 +95,7 @@
 
 GUI使用Qt5，但是还没来及写好，下图是作为替代随便写的Cli交互界面
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\cli.PNG">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图2 CLI</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\cli.PNG">    <br>     <p align="center">图2 CLI</p> 
 
 ## Hitable
 
@@ -122,7 +122,7 @@ hitable_list 和 Intersect实现的时物体组的交并
 
 如图二是加载了02模型加贴图，使用了bvh树，20000spp，8线程openmp的资源占用：
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\main-mission.PNG">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图3 任务管理器</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\main-mission.PNG">    <br>     <p align="center">图3 任务管理器</p>
 
 ## Material
 
@@ -138,7 +138,7 @@ hitable_list 和 Intersect实现的时物体组的交并
 
 显然，全反射在球形玻璃中不会出现，但图4中立方体中可以看到明显的全反射。
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\disp_cube2.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图4 dispersion</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\disp_cube2.png">    <br>     <p align="center">图4 dispersion</p>
 
 #### 金属和余弦体
 
@@ -158,11 +158,11 @@ Texture通过计算碰撞点相对贴图的uv坐标返回反射率或颜色，�
 
 下图5.1是02mainbody贴图，5.2是在室外的渲染效果，颜色比较淡的原因是使用了gamma修正，而图5.3则是关闭gamma修正的效果（都是100spp）。
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\model\zero-two-fully-rigged\textures\body_main.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图5.1 02 main body texture</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\model\zero-two-fully-rigged\textures\body_main.png">    <br>     <p align="center">图5.1 02 main body texture</p>
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\100spp_outdoor_gamma_on.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图5.2 gamma on</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\100spp_outdoor_gamma_on.png">    <br>     <p align="center">图5.2 gamma on</p>
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\100spp_outdoor_gamma_off.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图5.2 gamma on</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\100spp_outdoor_gamma_off.png">    <br>     <p align="center">图5.2 gamma on</p> 
 
 ## Camera
 
@@ -182,23 +182,22 @@ Texture通过计算碰撞点相对贴图的uv坐标返回反射率或颜色，�
 
 图6.1， 6.2是同样sample数下（300spp）使用与不使用重要性采样的对比（其中图6.2中墙上的影子是一个小bug，已经修复了）
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\300spp_no_mc.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图6.1 300spp不使用重要性采样的Monte Carlo</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\300spp_no_mc.png">    <br>     <p align="center">图6.1 300spp不使用重要性采样的Monte Carlo</p> 
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\300spp_5-5mc.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图6.1 300spp使用重要性采样的Monte Carlo</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\300spp_5-5mc.png">    <br>     <p align="center">图6.1 300spp使用重要性采样的Monte Carlo</p> 
 
 但是Monte-Carlo这种纯采样机制，注定会噪声很大，图7是wiki上的对比，每张图都比前一张采样率翻倍，可以看到noise是Monte-Carlo无法避免且致命的缺陷。
 
 
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\Path_tracing_sampling_values.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图7 Monte Carlo 噪声变化</div> </center>
-
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\Path_tracing_sampling_values.png">    <br>     <p align="center">图7 Monte Carlo 噪声变化</p>
 #### 随机数生成
 
 随机数生成对图片的噪声（显然）也有很大影响
 
 图8.1和8.2是同样spp同一场景下使用不同随机数生成方法得到的结果（因为场景生成也用了随机数，所以场景也略有不同）
 
-<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\rand_double_no_mc.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图8.1 随机数生成器1</div> </center>
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\rand_double_no_mc.png">    <br>     <p align="center">图8.1 随机数生成器1</p>
 
 ``` c++
 
@@ -245,7 +244,7 @@ static double random_double()
 
 图9是没有加载贴图的效果
 
-<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\notext_02_indoor_10000spp.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;text-align: center;">图9 no texture 02 indoor</div> 
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\notext_02_indoor_10000spp.png">    <br>     <p align="center">图9 no texture 02 indoor</p> 
 
 ## Accelerator
 
