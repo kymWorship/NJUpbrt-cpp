@@ -19,7 +19,7 @@
 目前没有使用make/cmake，但都留了接口
 
 
-│  background.h			背景光
+│  background.h			背景光  
 │  bound.h					即AABB，用于hit时的搜索
 │  camera.h					相机模块
 │  hitable.h					光线与物体相交模块，管理hitable文件夹中的各种形状
