@@ -9,7 +9,7 @@ void in_place_switch(T& a, T& b) {
 }
 
 void init_log(const char* logfilename) {
-    freopen(logfilename, "w", stderr);
+    freopen(logfilename, "a", stderr);
     time_t now = time(0);
     struct tm  tstruct;
     char  buf[80];

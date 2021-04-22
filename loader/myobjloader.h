@@ -61,9 +61,8 @@ bool myobjloader(string filename, vec3 translation,
             mtldict.back().dict_text = make_shared<png_texture>(string(rel_path));
         }
     }
-    // TODO: delete after testing 02
-    //DASSERT(mtldict.size() == 5 , "02test failed");
-    //cout<<"5 texture loaded\n";
+    cout<<mtldict.size()<<" textures loaded from "<<filename<<endl;
+    clog<<mtldict.size()<<" textures loaded from "<<filename<<endl;
 
     // load obj file
     int trianglenum =  0;
@@ -93,7 +92,6 @@ bool myobjloader(string filename, vec3 translation,
                 if ( strcmp(cur_name, dict.name) == 0 ) {
                     cur_mat = make_shared<lambertian>(dict.dict_text);
                     find_texture = true;
-                    cout<<dict.dict_text->get_texture(0.5, 0.5)<<endl;
                     break;
                 }
             }
