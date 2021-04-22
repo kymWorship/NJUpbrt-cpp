@@ -19,77 +19,77 @@
 目前没有使用make/cmake，但都留了接口
 
 
-│  background.h			背景光  
-│  bound.h					即AABB，用于hit时的搜索
-│  camera.h					相机模块
-│  hitable.h					光线与物体相交模块，管理hitable文件夹中的各种形状
-│  log.txt						运行日志
-│  main.cpp					CLI 主函数
-│  main.exe					CLI编译程序
-│  material.h					材质模块，管理material文件夹各种材质
-│  picture.ppm				输出的ppm格式图片
-│  ray.h							光线Class
-│  README.md				
-│  sampler.h					取样模块，即Monte-Carlo，管理sampler文件夹采样函数
-│  scene.h						场景（目前全部写在一个文件中）
-│  vec3.h						3vector Class
-│      
-├─accelerator				加速模块，目前只写了bvh加速，kd-tree和基于其上的photon-mapping还没来及写
-│  │  bvh.h						bvh Class
-│  │  
-│  └─bvh_method	
-│          bvh_build.h			bvh 函数定义
-│          bvh_node.h			bvh使用的struct
-│          
-├─gui							GUI界面，使用Qt5
-├─hitable						
-│      aabb.h						实际上使用的是bound.h
-│      cube.h						采用intersect方法写的cube（还可以使用三角面片等方法实现）
-│      cylinder.h					圆柱体
-│      hitable_list.h				其实应该叫做 Union，是hitable集合的并
-│      intersect.h					Intersect， hitable集合的交
-│      plane.h						无穷大平面
-│      sphere.h					球
-│      triangle.h					三角面片
-│      
-├─loader							文件加载器
-│  │  myobjloader.h			自己写的c based obj/mtl 模型文件加载
-│  │  mypngloader.h			基于stb_image的图片加载器（理论上不仅支持png），本来尝试使用pnglib，但很笨重，最后决定直接用stb
-│  │  
-│  └─external
-│          stb_image.h
-│          
-├─material
-│      glass.h						玻璃
-│      lambertian.h				余弦体
-│      metal.h						金属
-│      source.h					光源
-│      texture.h					贴图
-│      
-├─model							模型文件（目前仅支持obj/mtl，可以使用开源的blender转格式）
-│              
-├─mylib								
-│      common.h					基本所有模块都要用到的基本头
-│      mycode.h					我coding是的一些习惯性宏或函数
-│      mylogo.h						Cli界面LOGO
-│      myrand.h						随机数生成器
-│      onb.h							onb 模块，用的不是太多
-│      settings.h					编译参数宏（利于使用什么算法，是否打开色散etc.）可以用cmake输入，根据需求进行编译
-│      
-├─notes								笔记
-│      bvh.md					
-│      idea.md
-│      
-├─pics									输出（各种测试）图片
-│  ├─png								png格式输出
-│  └─ppm								ppm格式输出
-│               
-├─sampler								
-│      cos_sampler.h				余弦分布采样
-│      hit_sampler.h					光源oriented采样
-│      mix_sampler.h				混合采样
-│      
-└─test									测试模块
+│  background.h			背景光    
+│  bound.h					即AABB，用于hit时的搜索  
+│  camera.h					相机模块  
+│  hitable.h					光线与物体相交模块，管理hitable文件夹中的各种形状  
+│  log.txt						运行日志  
+│  main.cpp					CLI 主函数  
+│  main.exe					CLI编译程序  
+│  material.h					材质模块，管理material文件夹各种材质  
+│  picture.ppm				输出的ppm格式图片  
+│  ray.h							光线Class  
+│  README.md				  
+│  sampler.h					取样模块，即Monte-Carlo，管理sampler文件夹采样函数  
+│  scene.h						场景（目前全部写在一个文件中）  
+│  vec3.h						3vector Class  
+│        
+├─accelerator				加速模块，目前只写了bvh加速，kd-tree和基于其上的photon-mapping还没来及写  
+│  │  bvh.h						bvh Class  
+│  │    
+│  └─bvh_method	  
+│          bvh_build.h			bvh 函数定义  
+│          bvh_node.h			bvh使用的struct  
+│            
+├─gui							GUI界面，使用Qt5  
+├─hitable						  
+│      aabb.h						实际上使用的是bound.h  
+│      cube.h						采用intersect方法写的cube（还可以使用三角面片等方法实现）  
+│      cylinder.h					圆柱体  
+│      hitable_list.h				其实应该叫做 Union，是hitable集合的并  
+│      intersect.h					Intersect， hitable集合的交  
+│      plane.h						无穷大平面  
+│      sphere.h					球  
+│      triangle.h					三角面片  
+│        
+├─loader							文件加载器  
+│  │  myobjloader.h			自己写的c based obj/mtl 模型文件加载  
+│  │  mypngloader.h			基于stb_image的图片加载器（理论上不仅支持png），本来尝试使用pnglib，但很笨重，最后决定直接用stb  
+│  │    
+│  └─external  
+│          stb_image.h  
+│            
+├─material  
+│      glass.h						玻璃  
+│      lambertian.h				余弦体  
+│      metal.h						金属  
+│      source.h					光源  
+│      texture.h					贴图  
+│        
+├─model							模型文件（目前仅支持obj/mtl，可以使用开源的blender转格式）  
+│                
+├─mylib								  
+│      common.h					基本所有模块都要用到的基本头  
+│      mycode.h					我coding是的一些习惯性宏或函数  
+│      mylogo.h						Cli界面LOGO  
+│      myrand.h						随机数生成器  
+│      onb.h							onb 模块，用的不是太多  
+│      settings.h					编译参数宏（利于使用什么算法，是否打开色散etc.）可以用cmake输入，根据需求进行编译  
+│        
+├─notes								笔记  
+│      bvh.md					  
+│      idea.md  
+│        
+├─pics									输出（各种测试）图片  
+│  ├─png								png格式输出  
+│  └─ppm								ppm格式输出  
+│                 
+├─sampler								  
+│      cos_sampler.h				余弦分布采样  
+│      hit_sampler.h					光源oriented采样  
+│      mix_sampler.h				混合采样  
+│        
+└─test									测试模块  
 
 ## 交互界面
 
