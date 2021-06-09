@@ -1,11 +1,14 @@
 #ifndef SETTINGSH
 #define SETTINGSH
 
+// environment
+#define WorkspaceDir "E:/WorkspaceZXZQ/private/NJUpbrt-cpp/"
+
 // pic para
 #define MAX_DEP 40
 #define NX 800
 #define NY 400
-#define NS 20000
+#define NS 100
 #define HFOV 104 //deg
 
 // dispersion

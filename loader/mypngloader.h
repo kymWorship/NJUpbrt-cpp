@@ -12,7 +12,9 @@ using std::string;
 using std::cout;
 using std::endl;
 
-#define ABS_MODEL_PATH "D:/NJU/cs/PhysicsBasedRaytracing/workspace/model/"
+
+
+#define ABS_MODEL_PATH string(WorkspaceDir)+"model/"
 #define BYTES_PER_PIXEL 3
 
 
