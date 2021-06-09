@@ -1,7 +1,7 @@
 #ifndef BACKGROUNDH
 #define BACKGROUNDH
 
-#include "vec3.h"
+#include "geometry/geometry.h"
 #include "mylib/settings.h"
 
 inline vec3 background(const vec3& direction) {

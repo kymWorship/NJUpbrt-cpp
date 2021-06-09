@@ -1,7 +1,7 @@
 #ifndef BOUNDH
 #define BOUNDH
 // currently stand for aabb class
-#include "ray.h"
+#include "geometry/geometry.h"
 #include "mylib/common.h"
 
 class bound {

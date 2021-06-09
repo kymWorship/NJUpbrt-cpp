@@ -1,8 +1,7 @@
 #ifndef HITABLEH
 #define HITABLEH
 
-#include "ray.h"
-#include "vec3.h"
+#include "geometry/geometry.h"
 #include "bits/stdc++.h"
 #include <memory>
 #include "mylib/common.h"

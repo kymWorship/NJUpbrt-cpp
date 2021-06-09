@@ -18,6 +18,9 @@
 #define bg_light true
 #define dark_fac 1
 
+// camera
+#define DepthOfField true
+
 // sampler
 #define USING_MONTE_CARLO true
 

@@ -2,7 +2,7 @@
 #define MYRANDH
 
 #include <cstdlib>
-#include "../vec3.h"
+#include "../geometry/geometry.h"
 
 // float
 #ifndef MAXFLOAT
@@ -32,10 +32,18 @@ static double random_double()
 }
 
 vec3 rand_in_unit_sphere() {
-    vec3 rand_unit_vec;
+    vec3 rand_unit_vec3;
     do {
-        rand_unit_vec = vec3( random_double(), random_double(), random_double() );
-    } while (rand_unit_vec.squared_length()>=1.0);
-    return rand_unit_vec;
+        rand_unit_vec3 = vec3( random_double(), random_double(), random_double() );
+    } while (rand_unit_vec3.squared_length()>=1.0);
+    return rand_unit_vec3;
+}
+
+vec2 rand_in_unit_circle() {
+    vec2 rand_unit_vec2;
+    do {
+        rand_unit_vec2 = vec2( random_double(), random_double());
+    } while (rand_unit_vec2.squared_length() >= 1.0);
+    return rand_unit_vec2;
 }
 

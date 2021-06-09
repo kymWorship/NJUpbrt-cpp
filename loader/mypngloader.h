@@ -5,7 +5,7 @@
 #include "external/stb_image.h"
 #include <string>
 #include "../mylib/common.h"
-#include "../vec3.h"
+#include "../geometry/geometry.h"
 
 using std::string;
 // TODO: commend this

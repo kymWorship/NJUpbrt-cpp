@@ -1,6 +1,5 @@
 #include<bits/stdc++.h>
-#include "vec3.h"
-#include "ray.h"
+#include "geometry/geometry.h"
 #include "hitable.h"
 #include "material.h"
 #include "camera.h"

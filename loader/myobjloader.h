@@ -1,7 +1,7 @@
 #ifndef MYOBJLOADERH
 #define MYOBJLOADERH
 
-#include "../vec3.h"
+#include "../geometry/geometry.h"
 #include "../hitable.h"
 #include "../material.h"
 #include <cstdio>
