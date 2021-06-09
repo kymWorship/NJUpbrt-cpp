@@ -1,6 +1,9 @@
 #ifndef SETTINGSH
 #define SETTINGSH
 
+// environment
+#define WorkspaceDir "E:/WorkspaceZXZQ/private/NJUpbrt-cpp/"
+
 // pic para
 #define MAX_DEP 40
 #define NX 800
