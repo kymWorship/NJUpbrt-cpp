@@ -1,10 +1,10 @@
 # KYM-PBRT-cpp
 
-代码已上传[github](https://github.com/kymWorship/NJUpbrt-cpp/tree/master) master branch（master branch 为图像渲染部分，只是用了openmp）。
+本项目是用cpp实现的基于物理的图像渲染引擎，其中master branch是由[曾许曌秋](https://zxzq.me)实现的渲染引擎，cuda-dev是由[洪亮](https://github.com/heathcliff233)实现的cuda支持。
 
 其他语言的readme：[中文](README.md)， [English](README.en.md)
 
-在本地编译前，请在settings.h中更新workspace路径，并使用”-fopenmp“参数进行编译
+在本地编译前，请在settings.h中更新workspace路径，为使用openmp，请使用”-fopenmp“参数进行编译
 
 >  本来这两周计划测试不同bvh算法、实现photonmapping和GUI的，但是最近要去实验室，所以没空写也就算了。
 
