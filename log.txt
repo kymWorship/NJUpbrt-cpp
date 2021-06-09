@@ -1,4 +1,0 @@
-2021-04-18 12:43:19: program start
-5 textures loaded from 02-3
-model/02-3.objloaded, 19640triangles added
-BVH successfully built with 40223 nodessampling number: 0
