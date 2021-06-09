@@ -4,6 +4,8 @@
 
 其他语言的readme：[中文](README.md)， [English](README.en.md)
 
+在本地编译前，请在settings.h中更新workspace路径，并使用”-fopenmp“参数进行编译
+
 >  本来这两周计划测试不同bvh算法、实现photonmapping和GUI的，但是最近要去实验室，所以没空写也就算了。
 
 <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">图1 样例</p> 
