@@ -91,9 +91,10 @@ int main() {
     // initiate
     outputMYLOGO();
     init_log("log.txt");    // redirect clog to "filename" & log time
-    vec3 look_a(0, 0, 0);
+    // vec3 look_a(0, 0, 0);
+    vec3 look_a(4, 2, 5);// 02 position
     vec3 look_f(6, 2, 8);
-    camera cam(look_f, look_a, vec3(0,1,0), HFOV, float(NX)/float(NY));
+    camera cam(look_f, look_a, vec3(0,1,0), HFOV, float(NX)/float(NY), 0.3);
     // build BVH tree
     auto scenelist = homework1();
     auto time0 = clock();
