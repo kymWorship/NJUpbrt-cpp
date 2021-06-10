@@ -26,7 +26,7 @@ class material {
         virtual bool scatter(
             const ray& r, const hit_rec& h_rec, sca_rec& s_rec 
         ) const = 0;
-        virtual vec3 emitted(const hit_rec& h_rec) const {
+        virtual vec3 emitted(const ray& r, const hit_rec& h_rec) const {
             return vec3(0, 0, 0);
         }
         virtual double scattering_pdf(
