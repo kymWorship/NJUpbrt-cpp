@@ -36,7 +36,7 @@ vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitab
     // hit_nothing -> background
     if ( !scene->hit(r, 0.001, MAXFLOAT, hrec) ) return background(r.direction());
 
-    vec3 emitted = hrec.mat_ptr->emitted(hrec);
+    vec3 emitted = hrec.mat_ptr->emitted(r, hrec);
     sca_rec srec;
     // hit sth only emitting -> return emitted light
     if ( !hrec.mat_ptr->scatter(r, hrec, srec) ) return emitted;
@@ -95,8 +95,8 @@ int main() {
     outputMYLOGO();
     init_log("log.txt");    // redirect clog to "filename" & log time
     // vec3 look_a(0, 0, 0);
-    vec3 look_a(4, 3, 5);// 02 position
-    vec3 look_f(9, 4, 0);
+    vec3 look_a(4, 5, 5);// 02 position
+    vec3 look_f(9, 5, -3);
     camera cam(look_f, look_a, vec3(0,1,0), HFOV, float(NX)/float(NY), 0);
     // build BVH tree
 

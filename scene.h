@@ -558,9 +558,9 @@ vector<shared_ptr<hitable>> testSurfaceSource() {
     vector<shared_ptr<hitable>> list;
     // scene
     // # load 02
-    // myobjloader("02-3", vec3(4, 0, 5), 2, list);
+    myobjloader("02-3", vec3(4, 0, 5), 2, list);
     // # use sphere
-    list.push_back(make_shared<sphere>(vec3(4, 1, 5), 1, make_shared<lambertian>(vec3(0.7, 0.4, 0.5))));
+    // list.push_back(make_shared<sphere>(vec3(4, 1, 5), 1, make_shared<lambertian>(vec3(0.7, 0.4, 0.5))));
     // add connell box
     int minx = -10, maxx = 10, miny = 0, maxy = 10, minz = -10, maxz = 10;
     vec3 v1(maxx, miny, maxz), v2(maxx, miny, minz), v3(maxx, maxy, maxz), v4(maxx, maxy, minz),
@@ -587,8 +587,8 @@ vector<shared_ptr<hitable>> testSurfaceSource() {
     auto sourceMat = make_shared<source>(vec3(0.95, 0.95, 0.95));
     // # triangle
     double delta = 0.000001;
-    vec3 vA(-1, 6-delta, -1), vB(-1, 6-delta, 1), vC(1, 7-delta, 0);
-    list.push_back(make_shared<triangle>(vA, vB, vC, sourceMat));
+    vec3 vA(-1, 8-delta, -1), vB(-1, 8-delta, 1), vC(1, 8-delta, 0);
+    list.push_back(make_shared<triangle>(vC, vB, vA, sourceMat));
     // # sphere
     // list.push_back(make_shared<sphere>(vec3(0, 7, 0), 1, sourceMat));
     return list;
