@@ -586,8 +586,8 @@ vector<shared_ptr<hitable>> testSurfaceSource() {
     // add upperlight
     auto sourceMat = make_shared<source>(vec3(0.95, 0.95, 0.95));
     // # triangle
-    double delta = 0.000001;
-    vec3 vA(-1, 8-delta, -1), vB(-1, 8-delta, 1), vC(1, 8-delta, 0);
+    double delta = 0.01;
+    vec3 vA(-3, 10-delta, -3), vB(-3, 10-delta, 3), vC(3, 10-delta, 0);
     list.push_back(make_shared<triangle>(vC, vB, vA, sourceMat));
     // # sphere
     // list.push_back(make_shared<sphere>(vec3(0, 7, 0), 1, sourceMat));

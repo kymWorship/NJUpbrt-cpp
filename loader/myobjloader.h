@@ -19,10 +19,10 @@ bool myobjloader(string filename, vec3 translation,
     float gain, vector<shared_ptr<hitable>>& hit_list
 ) { // filename shouldn't have suffix!
     // init buf
-    vector<vec3> vertice;
+    vector<vec3> vertices;
     vector<float> vtu;
     vector<float> vtv;
-    vertice.clear();
+    vertices.clear();
     vtu.clear(); vtv.clear();
     vector<texture_dict> mtldict;
     mtldict.clear();
@@ -74,7 +74,7 @@ bool myobjloader(string filename, vec3 translation,
             // push vertex
             float x0, y0, z0;
             fscanf(objfile, "%f %f %f\n", &x0, &y0, &z0);
-            vertice.push_back(vec3(x0, y0, z0)*gain + translation);
+            vertices.push_back(vec3(x0, y0, z0)*gain + translation);
             continue;
         }
         if (strcmp(lineprefix, "vt") == 0 ) {
@@ -106,9 +106,9 @@ bool myobjloader(string filename, vec3 translation,
             assert( matches == 9 && "load obj failed");
             // TODO: temp_mat -> cur_mat
             hit_list.push_back(make_shared<triangle>(
-                vertice[verind[0] - 1],
-                vertice[verind[1] - 1],
-                vertice[verind[2] - 1],
+                vertices[verind[0] - 1],
+                vertices[verind[1] - 1],
+                vertices[verind[2] - 1],
                 cur_mat,
                 vec3(vtu[uvind[0]-1], vtu[uvind[1]-1], vtu[uvind[2]-1]),
                 vec3(vtv[uvind[0]-1], vtv[uvind[1]-1], vtv[uvind[2]-1])

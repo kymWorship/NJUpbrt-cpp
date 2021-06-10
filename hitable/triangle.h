@@ -7,9 +7,9 @@
 /*
     Standard and elementary hitable type (Triangle) 
     in 3D CG, which is defined with
-        point A, B, C: three vertice in right-handed 
+        point A, B, C: three vertices in right-handed 
             order
-        uv: uv of three vertice
+        uv: uv of three vertices
     - can be used as source (approximation)
     - can applied with texture
 */
@@ -46,6 +46,8 @@ class triangle: public hitable {
         virtual ray ray_gen (const vec3& point) const;
         virtual double pdf_val (const ray& r) const;
         virtual shared_ptr<material> mat() const { return mat_ptr; }
+        double get_area() const {return area;}
+        vec3 get_normal() const {return normal;}
 
     private:
         vec3 rA, rB, rC, P_lamb, P_mu; // righthanded
