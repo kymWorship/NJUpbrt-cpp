@@ -74,6 +74,9 @@ vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitab
             // invalid scatering, put forward to avoid extra cal
                 if ( !scattering_pdf ) {return emitted;}
             double pdf_val = mixpdf->pdf_val(scattered);
+            #if ISDEBUGGING
+            assert(pdf_val && "pdf_val = 0, may cause error");
+            #endif
             return emitted + 
                 srec.ratio*scattering_pdf*color(scattered, scene, depth+1, naivesource)/pdf_val;
         }
@@ -92,11 +95,12 @@ int main() {
     outputMYLOGO();
     init_log("log.txt");    // redirect clog to "filename" & log time
     // vec3 look_a(0, 0, 0);
-    vec3 look_a(4, 2, 5);// 02 position
-    vec3 look_f(6, 2, 8);
+    vec3 look_a(4, 3, 5);// 02 position
+    vec3 look_f(9, 4, 0);
     camera cam(look_f, look_a, vec3(0,1,0), HFOV, float(NX)/float(NY), 0);
     // build BVH tree
-    auto scenelist = homework1();
+
+    auto scenelist = testSurfaceSource();
     auto time0 = clock();
     auto scene = make_shared<BVHAccel>(scenelist);
     // naive source
@@ -104,6 +108,9 @@ int main() {
     for (auto hptr: scenelist) {
         if (hptr->mat()->is_sampling()) sourcelist.push_back(hptr);
     }
+    #if ISDEBUGGING
+    cout<<"total number of source: "<<sourcelist.size()<<endl;
+    #endif
     auto naivesource = make_shared<hitable_list>(sourcelist);
     auto time1 = clock();
     cout<<"BVH Tree built in "<<(time1 - time0) / CLOCKS_PER_SEC<<"secs\n";

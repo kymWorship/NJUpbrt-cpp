@@ -10,7 +10,7 @@
         point A, B, C: three vertice in right-handed 
             order
         uv: uv of three vertice
-    - TODO: used as source (approximation)
+    - can be used as source (approximation)
     - can applied with texture
 */
 
@@ -51,7 +51,7 @@ class triangle: public hitable {
         vec3 rA, rB, rC, P_lamb, P_mu; // righthanded
         vec3 vecu, vecv; // 3 direct: ABC seperately
         bool uvinited;
-        vec3 normal;
+        vec3 normal;    // normal is init as unit vec, right-handed
         vec3 area_vec;
         double area;
         shared_ptr<material> mat_ptr;
@@ -117,7 +117,7 @@ ray triangle::ray_gen(const vec3& point) const {
     if (rand3 > rand2) in_place_switch(rand2, rand3);
     if (rand2 > rand1) in_place_switch(rand1, rand2);
     if (rand3 > rand2) in_place_switch(rand2, rand3);
-    return ray(point, point_at_para(rand1-rand2, rand2-rand3));
+    return ray(point, point_at_para(rand1-rand2, rand2-rand3) - point);
 }
 
 double triangle::pdf_val(const ray& r) const {
@@ -127,7 +127,7 @@ double triangle::pdf_val(const ray& r) const {
         double cosine = fabs( dot(unit_vector(dist), normal) );
         return dist.squared_length() / (area*cosine);
     }
-    return false;
+    return 0;
 }
 
 
