@@ -4,6 +4,15 @@
 #include "../hitable.h"
 #include "../material.h"
 
+/*
+    this is used to hold a list
+    of hitable, it can be viewed 
+    as a UNION (compared to 
+    'intersect.h'), but mostly it's
+    used as the list of all hitable
+    and the list of all source.
+*/
+
 using namespace std;
 
 class hitable_list: public hitable {

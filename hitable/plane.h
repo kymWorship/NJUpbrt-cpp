@@ -3,6 +3,14 @@
 
 #include "../hitable.h"
 
+/*
+    infinite plane defined with
+        point: one point on the plane
+        n: normal of the plane
+    Note n also define inside outside of
+    the plane!
+*/
+
 class plane: public hitable {
     public:
         plane(vec3 point, vec3 n, shared_ptr<material> m_p):

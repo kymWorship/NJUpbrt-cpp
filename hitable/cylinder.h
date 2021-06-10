@@ -3,6 +3,15 @@
 
 #include "../hitable.h"
 
+/*
+    the cylinder is defined with
+        o: position of bottom center
+        d: the axis
+        r: radius of bottom circle
+    note the bottom and top is perpendicular
+    to the axis
+*/
+
 class cylinder: public hitable {
     public:
         cylinder() {}

@@ -19,7 +19,7 @@
 #define dark_fac 1
 
 // camera
-#define DepthOfField true
+#define DepthOfField false
 
 // sampler
 #define USING_MONTE_CARLO true

@@ -4,6 +4,16 @@
 #include "../hitable.h"
 #include "../mylib/mycode.h"
 
+/*
+    Standard and elementary hitable type (Triangle) 
+    in 3D CG, which is defined with
+        point A, B, C: three vertice in right-handed 
+            order
+        uv: uv of three vertice
+    - TODO: used as source (approximation)
+    - can applied with texture
+*/
+
 class triangle: public hitable {
     public:
         triangle (vec3 pointA, vec3 pointB, vec3 pointC, shared_ptr<material> m_p):
