@@ -1,6 +1,5 @@
 // TODO: should add ifndef?
 #include "../hitable.h"
-#include "../mylib/onb.h"
 #include "../mylib/myrand.h"
 
 /*

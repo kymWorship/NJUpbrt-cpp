@@ -1,7 +1,7 @@
 #ifndef ONBH
 #define ONBH
 
-#include "../geometry/geometry.h"
+#include "vec3.h"
 
 class onb {
     public:
