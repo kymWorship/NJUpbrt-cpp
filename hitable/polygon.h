@@ -109,6 +109,7 @@ ray polygon::ray_gen(const vec3& point) const {
         rand_area -= *area_list_itr;
     }
     assert(0 && "should not reach here!");
+    return ray(point, rand_in_unit_sphere());
 }
 
 double polygon::pdf_val(const ray& r) const {

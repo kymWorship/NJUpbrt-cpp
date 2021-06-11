@@ -5,6 +5,7 @@
 
 class onb {
     public:
+        onb() {}
         onb(vec3 norm) {
             bases[2] = unit_vector(norm);
             if ( fabs(bases[2].x()) < 0.9 ) 

@@ -49,6 +49,7 @@ class hitable {
 #include "hitable/triangle.h"
 #include "hitable/cylinder.h"
 #include "hitable/polygon.h"
+#include "hitable/disc.h"
 
 
 #endif
