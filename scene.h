@@ -558,7 +558,7 @@ vector<shared_ptr<hitable>> testSurfaceSource() {
     vector<shared_ptr<hitable>> list;
     // scene
     // # load 02
-    myobjloader("02-3", vec3(4, 0, 5), 3, list);
+    myobjloader("02-3", vec3(4, 0, 5), 4.5, list);
     // # use sphere
     // list.push_back(make_shared<sphere>(vec3(4, 1, 5), 1, make_shared<lambertian>(vec3(0.7, 0.4, 0.5))));
     // add connell box
@@ -610,7 +610,7 @@ vector<shared_ptr<hitable>> testSurfaceSource() {
     // }
     // list.push_back(make_shared<polygon>(polyVerticeList, sourceMat));
     // # disc
-    // list.push_back(make_shared<disc>(vec3(0, 10-delta, 0), vec3(0, -1, 0), 2, sourceMat));
+    list.push_back(make_shared<disc>(vec3(0, 10-delta, 0), vec3(0, -1, 0), 2, sourceMat));
     return list;
 }
 
