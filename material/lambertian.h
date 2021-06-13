@@ -34,7 +34,7 @@ class lambertian: public material {
         virtual bool scatter(
             const ray& r, const hit_rec& h_rec, sca_rec& s_rec
         ) const;
-        virtual double scattering_pdf(
+        virtual vec3 scattering_pdf(
             const ray& r_in, const hit_rec& h_rec, const ray& r_out
         ) const;
     private:
@@ -56,7 +56,7 @@ bool lambertian::scatter(
     return reflect(incident, h_rec.normal, 1.0, s_rec.scattered);
 }
 
-double lambertian::scattering_pdf(
+vec3 lambertian::scattering_pdf(
     const ray& r_in, const hit_rec& h_rec, const ray& r_out
 ) const {
     double cosine = dot(h_rec.normal, unit_vector(r_out.direction()));

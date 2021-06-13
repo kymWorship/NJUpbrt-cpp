@@ -72,7 +72,7 @@ vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitab
             ray scattered =  mixpdf->ray_gen(hrec.hit_p);
             auto scattering_pdf = hrec.mat_ptr->scattering_pdf(r, hrec, scattered);
             // invalid scatering, put forward to avoid extra cal
-                if ( !scattering_pdf ) {return emitted;}
+                if ( scattering_pdf.is_zero() ) {return emitted;}
             double pdf_val = mixpdf->pdf_val(scattered);
             #if ISDEBUGGING
             assert(pdf_val && "pdf_val = 0, may cause error");

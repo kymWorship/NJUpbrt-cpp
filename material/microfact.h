@@ -121,7 +121,7 @@ class microfact: public material {
         virtual bool scatter(
             const ray& r, const hit_rec& h_rec, sca_rec& s_rec
         ) const;
-        virtual double scatterign_pdf(
+        virtual vec3 scattering_pdf(
             const ray& r_in, const hit_rec& h_rec, const ray& r_out
         ) const;
         void updateAlg(string normalAlg, string geometryAlg);

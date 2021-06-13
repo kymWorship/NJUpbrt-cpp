@@ -29,11 +29,11 @@ class material {
         virtual vec3 emitted(const ray& r, const hit_rec& h_rec) const {
             return vec3(0, 0, 0);
         }
-        virtual double scattering_pdf(
+        virtual vec3 scattering_pdf(
             const ray& r_in, const hit_rec& h_rec, const ray& r_out
         ) const {
             assert(0&&"warning");
-            return 0.0;
+            return vec3(0, 0, 0);
         }
 
         inline virtual bool is_sampling() const{
