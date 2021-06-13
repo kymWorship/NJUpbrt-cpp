@@ -28,6 +28,7 @@ class vec2  {
         inline float length() const { return sqrt(e[0]*e[0] + e[1]*e[1]); }
         inline float squared_length() const { return e[0]*e[0] + e[1]*e[1]; }
         inline void make_unit_vector();
+        bool is_zero() const { return !(e[0] || e[1]);}
 
         float e[2];
 };
