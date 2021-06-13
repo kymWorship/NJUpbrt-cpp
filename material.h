@@ -48,7 +48,11 @@ bool reflect(const vec3& inc, const vec3& nor, float dif, ray& reflected) {
     //assert( ( fabs(inc.length()-1) < 0.01 ) && "incident light not normalized" );
     //assert( ( fabs(nor.length()-1) < 0.01 ) && "normal not normalized" );
     // NOTE: should be annotated after testing
-    reflected.mod_direction( inc - 2*dot(inc, nor)*nor + dif*rand_in_unit_sphere() );
+    if (dif) {
+        reflected.mod_direction( inc - 2*dot(inc, nor)*nor + dif*rand_in_unit_sphere() );
+    } else {    // avoid call rand_in_unit_shpere if dif == 0;
+         reflected.mod_direction( inc - 2*dot(inc, nor)*nor);
+    }
     return (dot(inc, nor)*dot(reflected.direction(), nor) < 0);
     // incident light at same side of the surface as reflected light
 }

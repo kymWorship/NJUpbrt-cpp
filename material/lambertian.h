@@ -60,7 +60,7 @@ vec3 lambertian::scattering_pdf(
     const ray& r_in, const hit_rec& h_rec, const ray& r_out
 ) const {
     double cosine = dot(h_rec.normal, unit_vector(r_out.direction()));
-    return (cosine<=0) ? 0 : cosine / M_PI;
+    return (cosine<=0) ? vec3(0, 0, 0) : vec3(cosine / M_PI, cosine / M_PI, cosine / M_PI);
 }
 
 #endif

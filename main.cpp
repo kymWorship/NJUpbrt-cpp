@@ -60,7 +60,7 @@ vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitab
         // onther light
         return emitted + srec.ratio*color(srec.scattered, scene, depth+1, naivesource);
     }
-    // Lambertian
+    // Lambertian / diffused microfact
     #if USING_MONTE_CARLO   // Monte-Carlo
         if ( naivesource->has_source() ) { 
             vector<shared_ptr<sampler>> samp_list {
