@@ -174,7 +174,10 @@ bool microfact::scatter(
     // specular
     s_rec.is_specular = true;
     s_rec.scattered.mod_origin(h_rec.hit_p);
-    return reflect(unit_vector(r.direction()), h_rec.normal, 0, s_rec.scattered);
+    auto unit_inRay = unit_vector(r.direction());
+    bool flag = reflect(unit_inRay, h_rec.normal, 0, s_rec.scattered);
+    double cosine = dot(unit_inRay, h_rec.normal);
+    s_rec.ratio *= vec3(Fernel_Schlick(cosine, n.r()), Fernel_Schlick(cosine, n.g()), Fernel_Schlick(cosine, n.b()));
 }
 
 vec3 microfact::scattering_pdf(
