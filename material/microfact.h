@@ -346,7 +346,7 @@ double microfact::Norm_Blinn_Phong(double ndotm) const {
 
 double microfact::Norm_Beckmann(double ndotm) const {
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     double inv_ndotm_sq = 1 / (ndotm*ndotm);
     return normalCache[0]*inv_ndotm_sq*inv_ndotm_sq*exp( normalCache[1]*(1 - inv_ndotm_sq) );
@@ -354,7 +354,7 @@ double microfact::Norm_Beckmann(double ndotm) const {
 
 double microfact::Norm_GGX(double ndotm) const {
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     return normalCache[0]/pow(ndotm*ndotm*normalCache[1] + 1, 2);
 }
@@ -386,7 +386,7 @@ double microfact::Geo_Smith_Beckmann(double ndotl, double ndotv, double mdotv, d
 }
 double microfact::Geo_Smith_GGX(double ndotl, double ndotv, double mdotv, double ndotm) const{
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     double g1v = 2*ndotv / (ndotv + sqrt(geometryCache[0] + (1-geometryCache[0])*ndotv*ndotv));
     double g1l = 2*ndotl / (ndotl + sqrt(geometryCache[0] + (1-geometryCache[0])*ndotl*ndotl));
@@ -394,27 +394,27 @@ double microfact::Geo_Smith_GGX(double ndotl, double ndotv, double mdotv, double
 }
 double microfact::Geo_Schlick(double ndotl, double ndotv, double mdotv, double ndotm) const{
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     return (ndotv / (geometryCache[0] + (1-geometryCache[0])*ndotv))
         *  (ndotl / (geometryCache[0] + (1-geometryCache[0])*ndotl));
 }
 double microfact::Geo_implicit(double ndotl, double ndotv, double mdotv, double ndotm) const{
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     return ndotl*ndotv;
 }
 double microfact::Geo_CT(double ndotl, double ndotv, double mdotv, double ndotm) const{
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     double common = 2*ndotm/mdotv;
     return Fmin(1, common*ndotv, common*ndotl);
 }
 double microfact::Geo_Kelemen(double ndotl, double ndotv, double mdotv, double ndotm) const{
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     return ndotl*ndotv/(mdotv*mdotv);
 }
