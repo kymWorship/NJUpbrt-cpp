@@ -176,8 +176,9 @@ bool microfact::scatter(
     s_rec.scattered.mod_origin(h_rec.hit_p);
     auto unit_inRay = unit_vector(r.direction());
     bool flag = reflect(unit_inRay, h_rec.normal, 0, s_rec.scattered);
-    double cosine = dot(unit_inRay, h_rec.normal);
+    double cosine = dot(-unit_inRay, h_rec.normal);
     s_rec.ratio *= vec3(Fernel_Schlick(cosine, n.r()), Fernel_Schlick(cosine, n.g()), Fernel_Schlick(cosine, n.b()));
+    return flag;
 }
 
 vec3 microfact::scattering_pdf(
@@ -187,7 +188,10 @@ vec3 microfact::scattering_pdf(
     double ndotl = dot(h_rec.normal, wl);
     if (ndotl <= 0) return vec3(0, 0, 0); // unvalid light
     vec3 wv = -unit_vector(r_in.direction());
-    DASSERT(dot(h_rec.normal, wv) <= 0, "need check");
+    #if ISDEBUGGING
+    if(dot(h_rec.normal, wv) <= 0) std::clog<<"found light insideout: "<<dot(h_rec.normal, wv)<<std::endl;
+    #endif
+    // DASSERT(dot(h_rec.normal, wv) > 0, "need check");
     vec3 wm = unit_vector(wl + wv);
     double ndotv = dot(h_rec.normal, wv);
     double mdotv = dot(wm, wv);
@@ -230,7 +234,7 @@ void microfact::updateAlg(string normalAlg, string geometryAlg) {
     }
     // TODO: Add more alg
     else {
-        clog<<"warning: Unknown normal algorithm: "<<normalAlg<<endl;
+        std::clog<<"warning: Unknown normal algorithm: "<<normalAlg<<endl;
         assert(0);
     }
     if (geometryAlg == "" || geometryAlg == "Smith") {
@@ -248,7 +252,7 @@ void microfact::updateAlg(string normalAlg, string geometryAlg) {
                 geometryCache[0] = m*m;
                 break;
             default:
-                clog<<"Warning: Smith alg doesn't support normal alg: "<<get_normal_alg()<<endl;
+                std::clog<<"Warning: Smith alg doesn't support normal alg: "<<get_normal_alg()<<endl;
                 assert(0);
                 break;
         }
@@ -257,7 +261,7 @@ void microfact::updateAlg(string normalAlg, string geometryAlg) {
         algorithm |= (MFGeometrySchlickCode<<4);
         switch (MFNormalMask(algorithm)){
             case MFNormalBeckmannCode:
-                clog<<"Warning: Schlick-Beckmann use wrong approx, should check before use!";
+                std::clog<<"Warning: Schlick-Beckmann use wrong approx, should check before use!";
                 geometryFactor = &microfact::Geo_Schlick;
                 geometryCache[0] = m*sqrt(2/M_PI);//k
                 break;
@@ -266,7 +270,7 @@ void microfact::updateAlg(string normalAlg, string geometryAlg) {
                 geometryCache[0] = m/2; //k
                 break;
             default:
-                clog<<"Warning: Schlick alg doesn't support normal alg: "<<get_normal_alg()<<endl;
+                std::clog<<"Warning: Schlick alg doesn't support normal alg: "<<get_normal_alg()<<endl;
                 assert(0);
                 break;
         }
@@ -283,7 +287,7 @@ void microfact::updateAlg(string normalAlg, string geometryAlg) {
     }
     // TODO: Add more alg
     else {
-        clog<<"warning: Unknown geometry algorithm: "<<geometryAlg<<endl;
+        std::clog<<"warning: Unknown geometry algorithm: "<<geometryAlg<<endl;
         assert(0);
     }
 }
@@ -335,7 +339,7 @@ double microfact::Fernel_Schlick(double cosine, double ref_idx) const {
 /* #Region Normal Factors */
 double microfact::Norm_Blinn_Phong(double ndotm) const {
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     return normalCache[0]*pow(ndotm, normalCache[1]);
 }
@@ -360,7 +364,7 @@ double microfact::Norm_GGX(double ndotm) const {
 /* #Region Geometry Factors */
 double microfact::Geo_Smith_Beckmann(double ndotl, double ndotv, double mdotv, double ndotm) const {
     // TODO: Test
-    assert(0 && "not tested!");
+    // assert(0 && "not tested!");
     // Code here
     double cv = ndotv/(m*sqrt(1-ndotv*ndotv));
     double g1v;

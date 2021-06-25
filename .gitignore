@@ -8,3 +8,5 @@ test
 log.txt
 test.ppm
 main.exe
+compare.cpp
+compare.exe

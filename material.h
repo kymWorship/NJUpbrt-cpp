@@ -76,5 +76,6 @@ bool refract(const vec3& inc, const vec3& nor, float ni_over_nt, ray& refracted)
 #include "material/metal.h"
 #include "material/lambertian.h"
 #include "material/glass.h"
+#include "material/microfact.h"
 
 #endif
