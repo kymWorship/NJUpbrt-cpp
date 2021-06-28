@@ -24,6 +24,15 @@ float* mybackgroundhdtloader(string filename,
     std::cout<<filepath<<": "<<comp_per_pixel<<std::endl;
     //assert(comp_per_pixel == HDR_BYTES_PER_PIXEL && "not RGB HDR");
     assert(image && "fail to load png\n");
+    // Normalize and apply gamma
+    float maxHDR = 0;
+    for(int i = 0; i < width*height*HDR_CHANNELS_PER_PIXEL; i++ ) {
+        maxHDR = (maxHDR>image[i]) ? maxHDR : image[i];
+    }
+    assert(maxHDR && "Dark HDR picture!");
+    for(int i = 0; i < width*height*HDR_CHANNELS_PER_PIXEL; i++) {
+        image[i] = pow( image[i] / maxHDR , 1 / HDR_GAMMA );
+    }
     return image;
 }
 

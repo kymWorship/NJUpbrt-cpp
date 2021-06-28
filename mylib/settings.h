@@ -36,5 +36,8 @@
 // degub
 #define ISDEBUGGING true
 
+// import
+#define HDR_GAMMA 2.5
+
 
 #endif
