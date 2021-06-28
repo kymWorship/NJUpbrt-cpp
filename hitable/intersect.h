@@ -3,6 +3,11 @@
 
 #include "../hitable.h"
 
+/*
+    only intersection of all the hitable
+    in list is shown.
+*/
+
 class intersect:public hitable{
     public:
         intersect() {}

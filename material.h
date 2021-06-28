@@ -26,14 +26,14 @@ class material {
         virtual bool scatter(
             const ray& r, const hit_rec& h_rec, sca_rec& s_rec 
         ) const = 0;
-        virtual vec3 emitted(const hit_rec& h_rec) const {
+        virtual vec3 emitted(const ray& r, const hit_rec& h_rec) const {
             return vec3(0, 0, 0);
         }
-        virtual double scattering_pdf(
+        virtual vec3 scattering_pdf(
             const ray& r_in, const hit_rec& h_rec, const ray& r_out
         ) const {
             assert(0&&"warning");
-            return 0.0;
+            return vec3(0, 0, 0);
         }
 
         inline virtual bool is_sampling() const{
@@ -48,7 +48,11 @@ bool reflect(const vec3& inc, const vec3& nor, float dif, ray& reflected) {
     //assert( ( fabs(inc.length()-1) < 0.01 ) && "incident light not normalized" );
     //assert( ( fabs(nor.length()-1) < 0.01 ) && "normal not normalized" );
     // NOTE: should be annotated after testing
-    reflected.mod_direction( inc - 2*dot(inc, nor)*nor + dif*rand_in_unit_sphere() );
+    if (dif) {
+        reflected.mod_direction( inc - 2*dot(inc, nor)*nor + dif*rand_in_unit_sphere() );
+    } else {    // avoid call rand_in_unit_shpere if dif == 0;
+         reflected.mod_direction( inc - 2*dot(inc, nor)*nor);
+    }
     return (dot(inc, nor)*dot(reflected.direction(), nor) < 0);
     // incident light at same side of the surface as reflected light
 }
@@ -72,5 +76,6 @@ bool refract(const vec3& inc, const vec3& nor, float ni_over_nt, ray& refracted)
 #include "material/metal.h"
 #include "material/lambertian.h"
 #include "material/glass.h"
+#include "material/microfact.h"
 
 #endif

@@ -554,4 +554,143 @@ vector<shared_ptr<hitable>> homework1() {
     return list;
 }
 
+vector<shared_ptr<hitable>> testSurfaceSource() {
+    vector<shared_ptr<hitable>> list;
+    // scene
+    // # load 02
+    myobjloader("02-3", vec3(4, 0, 5), 4.5, list);
+    // # use sphere
+    // list.push_back(make_shared<sphere>(vec3(4, 1, 5), 1, make_shared<lambertian>(vec3(0.7, 0.4, 0.5))));
+    // add connell box
+    int minx = -10, maxx = 10, miny = 0, maxy = 10, minz = -10, maxz = 10;
+    vec3 v1(maxx, miny, maxz), v2(maxx, miny, minz), v3(maxx, maxy, maxz), v4(maxx, maxy, minz),
+         v5(minx, miny, maxz), v6(minx, miny, minz), v7(minx, maxy, maxz), v8(minx, maxy, minz);
+    // ## pink style
+    // auto mat1 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat2 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat3 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat4 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat5 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat6 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // ## conell style
+    auto mat1 = make_shared<lambertian>(vec3(0.9,   0,   0));
+    auto mat2 = make_shared<lambertian>(vec3(  0, 0.9,   0));
+    auto mat3 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    auto mat4 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    auto mat5 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    auto mat6 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    list.push_back(make_shared<triangle>(v1, v3, v4, mat1));
+    list.push_back(make_shared<triangle>(v1, v4, v2, mat1));
+    list.push_back(make_shared<triangle>(v6, v8, v7, mat2));
+    list.push_back(make_shared<triangle>(v6, v7, v5, mat2));
+    list.push_back(make_shared<triangle>(v1, v5, v7, mat3));
+    list.push_back(make_shared<triangle>(v1, v7, v3, mat3));
+    list.push_back(make_shared<triangle>(v2, v4, v8, mat4));
+    list.push_back(make_shared<triangle>(v2, v8, v6, mat4));
+    list.push_back(make_shared<triangle>(v3, v7, v8, mat5));
+    list.push_back(make_shared<triangle>(v3, v8, v4, mat5));
+    list.push_back(make_shared<triangle>(v2, v6, v5, mat6));
+    list.push_back(make_shared<triangle>(v2, v5, v1, mat6));
+    // add upperlight
+    double delta = 0.01;
+    auto sourceMat = make_shared<source>(vec3(0.95, 0.95, 0.95));
+    // # triangle
+    // vec3 vA(-3, 10-delta, -3), vB(-3, 10-delta, 3), vC(3, 10-delta, 0);
+    // list.push_back(make_shared<triangle>(vC, vB, vA, sourceMat));
+    // # sphere
+    // list.push_back(make_shared<sphere>(vec3(0, 7, 0), 1, sourceMat));
+    // # polygon
+    // int n = 6;
+    // vector<vec3> polyVerticeList;
+    // double theta0 = 2*M_PI/n;
+    // double r0 = 2;
+    // polyVerticeList.clear();
+    // for (int i = 0; i < n; i++) {
+    //     polyVerticeList.push_back(vec3(r0*cos(i*theta0), 10-delta, r0*sin(i*theta0)));
+    // }
+    // list.push_back(make_shared<polygon>(polyVerticeList, sourceMat));
+    // # disc
+    list.push_back(make_shared<disc>(vec3(0, 10-delta, 0), vec3(0, -1, 0), 2, sourceMat));
+    return list;
+}
+
+vector<shared_ptr<hitable>> testMicrofact(double roughness, string normAlg, string geoAlg, double index) {
+    vector<shared_ptr<hitable>> list;
+    // scene
+    auto microfactMat = make_shared<microfact>(roughness, normAlg, geoAlg, vec3(0.8, 0.7, 1.0), index);
+    list.push_back(make_shared<sphere>(vec3(5, 3, 5), 3, microfactMat));
+    myobjloader("02-3", vec3(0, 0, 5), 2.5, list);
+    /* #Region add connell box */
+    int minx = -10, maxx = 10, miny = 0, maxy = 10, minz = -10, maxz = 10;
+    vec3 v1(maxx, miny, maxz), v2(maxx, miny, minz), v3(maxx, maxy, maxz), v4(maxx, maxy, minz),
+         v5(minx, miny, maxz), v6(minx, miny, minz), v7(minx, maxy, maxz), v8(minx, maxy, minz);
+    // ## pink style
+    // auto mat1 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat2 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat3 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat4 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    // auto mat5 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat6 = make_shared<lambertian>(vec3(0.25*(3*0.9 + random_double()),0.25*(3*0.5 + random_double()),0.25*(3*0.8 + random_double())));
+    auto mat1 = make_shared<lambertian>(vec3(0.85, 0.85, 0.85));
+    auto mat2 = make_shared<lambertian>(vec3(0.85, 0.85, 0.85));
+    auto mat3 = make_shared<lambertian>(vec3(0.85, 0.85, 0.85));
+    auto mat4 = make_shared<lambertian>(vec3(0.85, 0.85, 0.85));
+    auto mat5 = make_shared<lambertian>(vec3(0.85, 0.85, 0.85));
+    // ## conell style
+    // auto mat1 = make_shared<lambertian>(vec3(0.9,   0,   0));
+    // auto mat2 = make_shared<lambertian>(vec3(  0, 0.9,   0));
+    // auto mat3 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    // auto mat4 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    // auto mat5 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    // auto mat6 = make_shared<lambertian>(vec3(0.9, 0.9, 0.9));
+    list.push_back(make_shared<triangle>(v1, v3, v4, mat1));
+    list.push_back(make_shared<triangle>(v1, v4, v2, mat1));
+    list.push_back(make_shared<triangle>(v6, v8, v7, mat2));
+    list.push_back(make_shared<triangle>(v6, v7, v5, mat2));
+    list.push_back(make_shared<triangle>(v1, v5, v7, mat3));
+    list.push_back(make_shared<triangle>(v1, v7, v3, mat3));
+    list.push_back(make_shared<triangle>(v2, v4, v8, mat4));
+    list.push_back(make_shared<triangle>(v2, v8, v6, mat4));
+    list.push_back(make_shared<triangle>(v3, v7, v8, mat5));
+    list.push_back(make_shared<triangle>(v3, v8, v4, mat5));
+    list.push_back(make_shared<triangle>(v2, v6, v5, mat6));
+    list.push_back(make_shared<triangle>(v2, v5, v1, mat6));
+    /* #endRegion */
+    // add upperlight
+    double delta = 0.01;
+    auto sourceMat = make_shared<source>(vec3(1, 1, 1));
+    // # triangle
+    // vec3 vA(-3, 10-delta, -3), vB(-3, 10-delta, 3), vC(3, 10-delta, 0);
+    // list.push_back(make_shared<triangle>(vC, vB, vA, sourceMat));
+    // # sphere
+    // list.push_back(make_shared<sphere>(vec3(0, 7, 0), 1, sourceMat));
+    // # polygon
+    // int n = 6;
+    // vector<vec3> polyVerticeList;
+    // double theta0 = 2*M_PI/n;
+    // double r0 = 2;
+    // polyVerticeList.clear();
+    // for (int i = 0; i < n; i++) {
+    //     polyVerticeList.push_back(vec3(r0*cos(i*theta0), 10-delta, r0*sin(i*theta0)));
+    // }
+    // list.push_back(make_shared<polygon>(polyVerticeList, sourceMat));
+    // # disc
+    // list.push_back(make_shared<disc>(vec3(0, 10-delta, 0), vec3(0, -1, 0), 2, sourceMat));
+    list.push_back(make_shared<sphere>(vec3(7, 1, 0), 1, sourceMat));
+    return list;
+}
+
+vector<shared_ptr<hitable>> testEnvironmentLight(double roughness, string normAlg, string geoAlg, double index) {
+    vector<shared_ptr<hitable>> list;    
+    // // scene
+    // auto microfactMat = make_shared<microfact>(roughness, normAlg, geoAlg, vec3(0.8, 0.7, 1.0), index);
+    // list.push_back(make_shared<sphere>(vec3(5, 3, 5), 3, microfactMat));
+    // myobjloader("02-3", vec3(0, 0, 5), 2.5, list);
+    // add light
+    double delta = 0.01;
+    auto sourceMat = make_shared<source>(vec3(1, 1, 1));
+    list.push_back(make_shared<sphere>(vec3(7, 1, 0), 1, sourceMat));
+    return list;
+}
+
 #endif

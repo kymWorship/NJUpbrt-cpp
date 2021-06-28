@@ -1,8 +1,7 @@
 #ifndef HITABLEH
 #define HITABLEH
 
-#include "ray.h"
-#include "vec3.h"
+#include "geometry/geometry.h"
 #include "bits/stdc++.h"
 #include <memory>
 #include "mylib/common.h"
@@ -49,6 +48,8 @@ class hitable {
 #include "hitable/plane.h"
 #include "hitable/triangle.h"
 #include "hitable/cylinder.h"
+#include "hitable/polygon.h"
+#include "hitable/disc.h"
 
 
 #endif

@@ -4,6 +4,16 @@
 #include "../hitable.h"
 #include "../mylib/mycode.h"
 
+/*
+    Standard and elementary hitable type (Triangle) 
+    in 3D CG, which is defined with
+        point A, B, C: three vertices in right-handed 
+            order
+        uv: uv of three vertices
+    - can be used as source (approximation)
+    - can applied with texture
+*/
+
 class triangle: public hitable {
     public:
         triangle (vec3 pointA, vec3 pointB, vec3 pointC, shared_ptr<material> m_p):
@@ -36,12 +46,14 @@ class triangle: public hitable {
         virtual ray ray_gen (const vec3& point) const;
         virtual double pdf_val (const ray& r) const;
         virtual shared_ptr<material> mat() const { return mat_ptr; }
+        double get_area() const {return area;}
+        vec3 get_normal() const {return normal;}
 
     private:
         vec3 rA, rB, rC, P_lamb, P_mu; // righthanded
         vec3 vecu, vecv; // 3 direct: ABC seperately
         bool uvinited;
-        vec3 normal;
+        vec3 normal;    // normal is init as unit vec, right-handed
         vec3 area_vec;
         double area;
         shared_ptr<material> mat_ptr;
@@ -107,7 +119,7 @@ ray triangle::ray_gen(const vec3& point) const {
     if (rand3 > rand2) in_place_switch(rand2, rand3);
     if (rand2 > rand1) in_place_switch(rand1, rand2);
     if (rand3 > rand2) in_place_switch(rand2, rand3);
-    return ray(point, point_at_para(rand1-rand2, rand2-rand3));
+    return ray(point, point_at_para(rand1-rand2, rand2-rand3) - point);
 }
 
 double triangle::pdf_val(const ray& r) const {
@@ -117,7 +129,7 @@ double triangle::pdf_val(const ray& r) const {
         double cosine = fabs( dot(unit_vector(dist), normal) );
         return dist.squared_length() / (area*cosine);
     }
-    return false;
+    return 0;
 }
 
 

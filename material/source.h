@@ -3,6 +3,13 @@
 
 #include "../material.h"
 
+/*
+    Though back color is included,
+    it's not supported currently,
+    'emit' will only return color if 
+    it's the front face!
+*/
+
 class source: public material {
     public:
         source() {}
@@ -32,7 +39,7 @@ class source: public material {
             back_src_col = backtext;
         }
         virtual bool scatter(const ray& r, const hit_rec& h_rec, sca_rec& s_rec) const;
-        virtual vec3 emitted(const hit_rec& hrec) const;
+        virtual vec3 emitted(const ray& r, const hit_rec& hrec) const;
         inline virtual bool is_sampling() const {
             return true;
         }
@@ -53,8 +60,11 @@ bool source::scatter(
     return false;
 }
 
-vec3 source::emitted(const hit_rec& h_rec) const {
-    return src_col->get_texture(h_rec.u, h_rec.v);
+vec3 source::emitted(const ray& r, const hit_rec& h_rec) const {
+    if ( dot(r.direction(), h_rec.normal) < 0 ) {   // front face
+        return src_col->get_texture(h_rec.u, h_rec.v);
+    }
+    return vec3(0, 0, 0);   // back face
 }
 
 

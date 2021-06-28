@@ -3,6 +3,12 @@
 
 #include "../hitable.h"
 
+/*
+    This is infact Parallelepiped as
+        cor define one corner of it
+        a, b, c define three direction
+*/
+
 class cube:public hitable {
     public:
         cube() {}

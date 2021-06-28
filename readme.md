@@ -54,7 +54,7 @@
 │  README.md				  
 │  sampler.h					取样模块，即Monte-Carlo，管理sampler文件夹采样函数  
 │  scene.h						场景（目前全部写在一个文件中）  
-│  vec3.h						3vector Class  
+│  geometry/geometry.h						3vector Class  
 │        
 ├─accelerator				加速模块，目前只写了bvh加速，kd-tree和基于其上的photon-mapping还没来及写  
 │  │  bvh.h						bvh Class  

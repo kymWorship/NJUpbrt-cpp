@@ -6,7 +6,7 @@ Other language: [English](README.en.md), [中文](README.md)
 
 Please update `WorkspaceDif` macro in settings.h before compiling and use "-fopenmp" as compiling argument in order to use openmp
 
-<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">P1 Sample<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">图1 样例</p> </p> 
+<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%"     src=".\demo-pics\02cylinder_20000spp.png">    <br>     <p align="center">P1 Sample</p>
 
 ## functions:
 

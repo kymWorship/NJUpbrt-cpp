@@ -1,7 +1,14 @@
 // TODO: should add ifndef?
 #include "../hitable.h"
-#include "../mylib/onb.h"
 #include "../mylib/myrand.h"
+
+/*
+    Sphere defined with
+        c: position of center
+        r: radius
+    - This hitable type can be used as source
+    currently.
+*/
 
 class sphere: public hitable {
     public:

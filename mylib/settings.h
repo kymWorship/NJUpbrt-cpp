@@ -2,13 +2,14 @@
 #define SETTINGSH
 
 // environment
-#define WorkspaceDir "E:/WorkspaceZXZQ/private/NJUpbrt-cpp/"
+//#define WorkspaceDir "E:/WorkspaceZXZQ/private/NJUpbrt-cpp/"
+#define WorkspaceDir "D:/NJU/cs/PhysicsBasedRaytracing/workspace/"
 
 // pic para
 #define MAX_DEP 40
 #define NX 800
 #define NY 400
-#define NS 100
+#define NS 200
 #define HFOV 104 //deg
 
 // dispersion
@@ -17,6 +18,10 @@
 // background
 #define bg_light true
 #define dark_fac 1
+#define USING_ENVIRONMENT_LIGHT true
+
+// camera
+#define DepthOfField false
 
 // sampler
 #define USING_MONTE_CARLO true
@@ -30,6 +35,9 @@
 
 // degub
 #define ISDEBUGGING true
+
+// import
+#define HDR_GAMMA 2.5
 
 
 #endif
