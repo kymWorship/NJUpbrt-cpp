@@ -2,7 +2,8 @@
 #define SETTINGSH
 
 // environment
-#define WorkspaceDir "E:/WorkspaceZXZQ/private/NJUpbrt-cpp/"
+//#define WorkspaceDir "E:/WorkspaceZXZQ/private/NJUpbrt-cpp/"
+#define WorkspaceDir "D:/NJU/cs/PhysicsBasedRaytracing/workspace/"
 
 // pic para
 #define MAX_DEP 40
@@ -17,6 +18,7 @@
 // background
 #define bg_light true
 #define dark_fac 1
+#define USING_ENVIRONMENT_LIGHT true
 
 // camera
 #define DepthOfField false

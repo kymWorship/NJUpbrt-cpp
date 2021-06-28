@@ -7,7 +7,7 @@
 #include <cstdio>
 #include <cassert>
 
-#define REL_MODEL_PATH "model/"
+#define REL_MODEL_PATH "import/model/"
 
 
 struct texture_dict {
