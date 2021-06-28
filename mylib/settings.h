@@ -7,10 +7,10 @@
 
 // pic para
 #define MAX_DEP 40
-#define NX 400
+#define NX 800
 #define NY 400
-#define NS 10000
-#define HFOV 65 //104 //deg
+#define NS 200
+#define HFOV 104 //deg
 
 // dispersion
 #define IS_DISP false

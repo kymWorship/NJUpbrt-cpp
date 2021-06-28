@@ -1,7 +1,7 @@
 #ifndef TEXTUREH
 #define TEXTUREH
 
-#include "../loader/mypngloader.h"
+#include "../loader/myloaders.h"
 
 class texture {
     public:

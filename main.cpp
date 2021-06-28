@@ -28,13 +28,12 @@ inline vec3 de_nan(const vec3& c) {
 }
 
 
-vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitable> naivesource) {
+vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitable> naivesource, shared_ptr<background> bg) {
     hit_rec hrec;
-
     // MAX DEP  ->  dark
     if ( depth >= MAX_DEP ) return vec3(0, 0, 0);
     // hit_nothing -> background
-    if ( !scene->hit(r, 0.001, MAXFLOAT, hrec) ) return background(r.direction());
+    if ( !scene->hit(r, 0.001, MAXFLOAT, hrec) ) return bg->get_color(r.direction());
 
     vec3 emitted = hrec.mat_ptr->emitted(r, hrec);
     sca_rec srec;
@@ -51,14 +50,14 @@ vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitab
             srec.gscattered.is_dispersed = true;
             srec.bscattered.is_dispersed = true;
             return  emitted
-                    +vec3(srec.ratio.r(), 0, 0)*color(srec.rscattered, scene, depth+1)
-                    +vec3(0, srec.ratio.g(), 0)*color(srec.gscattered, scene, depth+1)
-                    +vec3(0, 0, srec.ratio.b())*color(srec.bscattered, scene, depth+1);
+                    +vec3(srec.ratio.r(), 0, 0)*color(srec.rscattered, scene, depth+1, naivesource, bg)
+                    +vec3(0, srec.ratio.g(), 0)*color(srec.gscattered, scene, depth+1, naivesource, bg)
+                    +vec3(0, 0, srec.ratio.b())*color(srec.bscattered, scene, depth+1, naivesource, bg);
         }
         srec.scattered.is_dispersed = r.is_dispersed;
         #endif
         // onther light
-        return emitted + srec.ratio*color(srec.scattered, scene, depth+1, naivesource);
+        return emitted + srec.ratio*color(srec.scattered, scene, depth+1, naivesource, bg);
     }
     // Lambertian / diffused microfact
     #if USING_MONTE_CARLO   // Monte-Carlo
@@ -78,11 +77,11 @@ vec3 color(const ray & r, shared_ptr<hitable> scene, int depth, shared_ptr<hitab
             assert(pdf_val && "pdf_val = 0, may cause error");
             #endif
             return emitted + 
-                srec.ratio*scattering_pdf*color(scattered, scene, depth+1, naivesource)/pdf_val;
+                srec.ratio*scattering_pdf*color(scattered, scene, depth+1, naivesource, bg)/pdf_val;
         }
     #endif
     // traditional ray tracing
-    return emitted + srec.ratio*color(srec.scattered, scene, depth+1, naivesource);
+    return emitted + srec.ratio*color(srec.scattered, scene, depth+1, naivesource, bg);
 }
 
 
@@ -95,12 +94,14 @@ int main() {
     outputMYLOGO();
     init_log("log.txt");    // redirect clog to "filename" & log time
     // vec3 look_a(0, 0, 0);
-    vec3 look_a(5, 3, 5);// 02 position
-    vec3 look_f(-3, 5, -3);
+    vec3 look_a(0, 0, -2);// 02 position
+    vec3 look_f(0, 3, -6);
     camera cam(look_f, look_a, vec3(0,1,0), HFOV, float(NX)/float(NY), 0);
+    // init the background
+    auto environment = make_shared<background>();
     // build BVH tree
 
-    auto scenelist = testMicrofact(0.2, "", "", 8);
+    auto scenelist = scene02_1();//testEnvironmentLight(0.3, "", "", 8);
     auto time0 = clock();
     auto scene = make_shared<BVHAccel>(scenelist);
     // naive source
@@ -144,7 +145,7 @@ int main() {
                 float ratioh = float(i + random_double()) / float(NX);
                 float ratiov = float(j + random_double()) / float(NY);
                 ray r = cam.get_ray(ratioh, ratiov);
-                mp_col[k] = color(r, scene, 0, naivesource);
+                mp_col[k] = color(r, scene, 0, naivesource, environment);
             }
             for (int k = 0; k < NS; k++ ) {
                 col += de_nan(mp_col[k]);

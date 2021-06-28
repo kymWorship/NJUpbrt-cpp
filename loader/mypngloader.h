@@ -1,8 +1,7 @@
 #ifndef MYPNGLOADERH
 #define MYPNGLOADERH
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "external/stb_image.h"
+#include "myloaders.h"
 #include <string>
 #include "../mylib/common.h"
 #include "../geometry/geometry.h"
@@ -20,6 +19,7 @@ using std::endl;
 #define PNG_CHANNELS_PER_PIXEL 3
 #define PNG_BYTES_PER_PIXEL PNG_BYTES_PER_CHANNEL*PNG_CHANNELS_PER_PIXEL
 
+// TODO: using CLASS!
 
 unsigned char* mymodelpngloader(string filename, 
     int& width, int& height

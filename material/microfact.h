@@ -166,7 +166,7 @@ bool microfact::scatter(
     s_rec.ratio = attenuation->get_texture(h_rec.u, h_rec.v);
     if ( m!= 0) { // diffuse: should handled by Monte Carlo
         #if !USING_MONTE_CARLO 
-            assert(0 && "microfact can't be handled properly without Monte Carlo, turn on Monte Carlo in settings.h")
+            assert(0 && "microfact can't be handled properly without Monte Carlo, turn on Monte Carlo in settings.h");
         #endif
         s_rec.is_specular = false;
         return true;

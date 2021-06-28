@@ -680,4 +680,17 @@ vector<shared_ptr<hitable>> testMicrofact(double roughness, string normAlg, stri
     return list;
 }
 
+vector<shared_ptr<hitable>> testEnvironmentLight(double roughness, string normAlg, string geoAlg, double index) {
+    vector<shared_ptr<hitable>> list;    
+    // // scene
+    // auto microfactMat = make_shared<microfact>(roughness, normAlg, geoAlg, vec3(0.8, 0.7, 1.0), index);
+    // list.push_back(make_shared<sphere>(vec3(5, 3, 5), 3, microfactMat));
+    // myobjloader("02-3", vec3(0, 0, 5), 2.5, list);
+    // add light
+    double delta = 0.01;
+    auto sourceMat = make_shared<source>(vec3(1, 1, 1));
+    list.push_back(make_shared<sphere>(vec3(7, 1, 0), 1, sourceMat));
+    return list;
+}
+
 #endif

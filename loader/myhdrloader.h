@@ -1,20 +1,21 @@
 #ifndef MYHDRLOADERH
 #define MYHDRLOADERH
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "external/stb_image.h"
+#include "myloaders.h"
 #include <string>
 #include "../mylib/common.h"
 #include "../geometry/geometry.h"
 
 using std::string;
 
+// TODO: USE CLASS!
+
 #define ABS_BACKGROUND_PATH string(WorkspaceDir)+"import/background/pics/"
 #define HDR_BYTES_PER_CHANNEL 4
 #define HDR_CHANNELS_PER_PIXEL 3
 #define HDR_BYTES_PER_PIXEL HDR_BYTES_PER_CHANNEL*HDR_CHANNELS_PER_PIXEL
 
-float* mybackgroundhdtloader(string filename,
+float* mybackgroundhdrloader(string filename,
     int& width, int& height
 ) {
     string filepath = ABS_BACKGROUND_PATH + filename;
